@@ -66,7 +66,13 @@ void dealloc(Node* head)
 //   Add any helper functions or
 //   function object struct declarations
 // -----------------------------------------------
-
+// Functor that returns true if input is an odd integer
+struct functor {
+    bool operator() (int val) const {
+        if (val % 2 == 0) return false;
+        else return true;
+    }
+};
 
 
 
@@ -87,8 +93,34 @@ int main(int argc, char* argv[])
 
     // Test out your linked list code
 
+    // Test llpivot
+    Node* small;
+    Node* large;
+    llpivot(head, small, large, 7);
+
+    cout << "head: ";
+    // Expected output: none
+    print(head);
+
+    cout << "smaller: ";
+    // Expected output: 1 2 3 4 5 6 7
+    print(small);
+
+    cout << "larger: ";
+    // Expected output: 8 9 10 11
+    print(large);
 
 
+    // Test llfilter
+    Node* filter_result = llfilter(small, functor());
+
+    cout << "filtered: ";
+    // Expected output: 2 4 6
+    print(filter_result);
+
+    // Deallocate remaining accessible nodes
+    dealloc(filter_result);
+    dealloc(large);
     
     return 0;
 
