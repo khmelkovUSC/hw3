@@ -22,7 +22,8 @@ public:
   * @brief Destroy the Heap object
   * 
   */
-  ~Heap();
+  // We do not need a custom deconstructor so it is better to just use the C++ provided deconstructor
+  // ~Heap();
 
   /**
    * @brief Push an item to the heap
@@ -92,7 +93,7 @@ void Heap<T,PComparator>::trickleDown(size_t index) {
   if (!nodeExists(firstChild)) return;
 
   size_t bestChild = firstChild;
-  for (size_t i = 2; i<m_; i++) {
+  for (size_t i = 2; i<=m_; i++) {
     size_t currChild = index*m_ + i;
     // If the child exists and is better than the current best child, update the bestChild index
     if (nodeExists(currChild)) {
@@ -110,7 +111,7 @@ void Heap<T,PComparator>::trickleDown(size_t index) {
 
 template <typename T, typename PComparator>
 void Heap<T,PComparator>::trickleUp(size_t index) {
-  size_t parent = index/m_ - 1;
+  size_t parent = (index-1)/m_;
   // Stop if there is no parent
   if (!nodeExists(parent)) return;
 
