@@ -11,3 +11,5 @@ To compile the heap implementation go into the /heap_test directory with `cd hea
 To run tests on the heap, run `make test`
 
 To compile the logicsim go into /logicsim with `cd logicsim` and then run `make`
+
+To make a timing diagram run `./logicsim [your input file] > [your output file].uml` then `java -jar plantuml.jar [your output file].uml`
